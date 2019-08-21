@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 });
+
+Route::get('/unit', function () {
+    return view('unit');
+});
+
+Route::get('/stock', function () {
+    return view('stock');
+});
