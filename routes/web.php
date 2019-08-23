@@ -19,10 +19,14 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/unit', function () {
-    return view('unit');
-});
 
-Route::get('/stock', function () {
-    return view('stock');
-});
+
+Route::get('/unit','UnitController@index');
+
+Route::post('/store_unit','UnitController@store');
+
+
+
+Route::get('/stock','StockController@index');
+
+Route::post('/store_stock','StockController@store');

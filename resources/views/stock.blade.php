@@ -1,11 +1,20 @@
 @extends('layouts.app')
 @section('title','MedStock')
 @section('content')
-
-<form action="{{url('/store')}}" method="post">
+@if($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{ $message }}
+        </div>
+    @endif  
+    @if($message = Session::get('error'))
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @endif  
+<form action="{{url('/store_stock')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
        
-      
+        <br>
         <div class="form-group">
             <label class="font-weight-bold" for="secret">ชื่อคลังพัสดุ ภาษาไทย :</label>
             <input 
@@ -29,29 +38,38 @@
                 {{ !empty(Session::get('status')['stockengname']) ? Session::get('status')['stockengname'] : ''}}
             </div>
         </div>
-    
-        <button type="submit" class="btn btn-primary">Create</button>
+
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input"  id="customSwitch1" name="status" checked>
+            <label class="custom-control-label" for="customSwitch1" >เปิด/ปิด ใช้งานคลังพัสดุ</label>
+        </div>
+        <div  class="form-group">
+          <button type="submit" class="btn btn-primary">บันทึก</button>
+        </div>
     </form>
-    
-    <table class="table table-striped">
-    <thead>
-      <tr>
-            <th>#</th>
-            <th>Application Name</th>
-            <th>Token</th>
-            <th>Regis Date</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-   
-        <tr>
-            <td>aaaaa</td>
-            <td>bbbbbbb</td>
-            <td>ccccccccc</td>
-            <td>ddddddddd</td>
-        </tr>
-  
-    </tbody>
-  </table>
+    <div class="container"  style="background-color:#f5e6e1;">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                    <th>#</th>
+                    <th>ชื่อคลังพัสดุ</th>
+                    <th>ชื่อคลังพัสดุ(ภาษาอังกฤษ)</th>
+                    <th>สถานะการเปิดใช้งาน</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+        
+            @foreach($stocks as $stock)
+                <tr>
+                    <td>{{$stock->id}}</td>
+                    <td>{{$stock->stockname}}</td>
+                    <td>{{$stock->stockengname}}</td>
+                    <td>{{$stock->status}}</td>
+                </tr>
+            @endforeach
+        
+            </tbody>
+         </table>
+    </div>
 
 @endsection

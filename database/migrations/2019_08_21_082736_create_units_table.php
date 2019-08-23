@@ -20,6 +20,7 @@ class CreateUnitsTable extends Migration
             $table->string('unitengname')->nullable();
             $table->string('shortname')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('unittype');
             $table->timestamps();
         });
     }

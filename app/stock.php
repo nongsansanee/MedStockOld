@@ -9,8 +9,9 @@ class stock extends Model
     protected $fillable = [ 
         'id',
         'stockname',
-        'stockengname',
-        'status',
-        'shortname'
+        'stockengname'
+        // 'status'
+
+     
     ];
 }

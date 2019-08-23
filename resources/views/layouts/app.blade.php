@@ -8,14 +8,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <title>@yield('title')</title>
     </head>
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+    <!-- <body background="{{ URL::to('images/hexagon-background-942982_1280.png') }}" height="100%"> -->
+    <body >
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #f5ac98;">
         <a class="navbar-brand">MedicalStock</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('/index')}}">Home <span class="sr-only">(current)</span></a>
@@ -47,7 +48,9 @@
             </form>
         </div>
     </nav>
-        <div class="container">
+    <br>
+    <br>
+        <div class="container" >
             @yield('content')
         </div>
         <footer>

@@ -13,6 +13,7 @@ class unit extends Model
         'unitname',
         'unitengname',
         'status',
+        'unittype',
         'shortname'
     ];
 }
