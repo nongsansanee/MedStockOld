@@ -80,30 +80,31 @@
     <!-- start table show data unit from database -->
     <div class="container"  style="background-color:#f5e6e1;">
     <table class="table table-striped">
-    <thead>
-      <tr>
-            <th>#</th>
-            <th>รหัสสาขา/หน่วยงาน</th>
-            <th>ชื่อหน่วยงาน</th>
-            <th>ชื่อย่อ(ภาษาไทย)</th>
-            <th>ชื่อหน่วยงาน(ภาษาอังกฤษ)</th>
-            <th>ประเภท</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-    @foreach($units as $unit)
-        <tr>
-            <td>{{$unit->id}}</td>
-            <td>{{$unit->unitid}}</td>
-            <td>{{$unit->unitname}}</td>
-            <td>{{$unit->shortname}}</td>
-            <td>{{$unit->unitendname}}</td>
-            <td>{{$unit->unittype}}</td>
-        </tr>
-    @endforeach
-    </tbody>
-  </table>
+            <thead>
+            <tr>
+                    <th>#</th>
+                    <th>รหัสสาขา/หน่วยงาน</th>
+                    <th>ชื่อหน่วยงาน</th>
+                    <th>ชื่อย่อ(ภาษาไทย)</th>
+                    <th>ชื่อหน่วยงาน(ภาษาอังกฤษ)</th>
+                    <th>ประเภท</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            @foreach($units as $unit)
+                <tr>
+                    <td>{{$unit->id}}</td>
+                    <td>{{$unit->unitid}}</td>
+                    <td>{{$unit->unitname}}</td>
+                    <td>{{$unit->shortname}}</td>
+                    <td>{{$unit->unitendname}}</td>
+                    <td>{{$unit->getTypeName()}}</td>
+                
+                </tr>
+            @endforeach
+            </tbody>
+     </table>
 
-  </div>
+    </div>
 
 @endsection

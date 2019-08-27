@@ -64,7 +64,7 @@
                     <td>{{$stock->id}}</td>
                     <td>{{$stock->stockname}}</td>
                     <td>{{$stock->stockengname}}</td>
-                    <td>{{$stock->status}}</td>
+                    <td>{{$stock->getStatusName()}}</td>
                 </tr>
             @endforeach
         

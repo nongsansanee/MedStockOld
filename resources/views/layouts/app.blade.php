@@ -4,9 +4,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="{{url('/css/bootstrap-4.3.1/css/bootstrap.min.css')}}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <title>@yield('title')</title>
+
+      
     </head>
     <!-- <body background="{{ URL::to('images/hexagon-background-942982_1280.png') }}" height="100%"> -->
     <body >
@@ -18,29 +20,36 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{url('/index')}}">Home <span class="sr-only">(current)</span></a>
-            </li>
-         
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                การจัดการคลังพัสดุ
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{url('/unit')}}">1.รายชื่อสาขา/หน่วย/สถานที่ ที่ใช้พัสดุ</a>
-                <a class="dropdown-item" href="{{url('/stock')}}">2.รายชื่อประเภทคลัง</a>
-                <a class="dropdown-item" href="#">3.รายชื่อประเภทหมวดในแต่ละคลัง</a>
-                <a class="dropdown-item" href="#">4.รายชื่อพัสดุ</a>
-                <a class="dropdown-item" href="#">5.รายชื่อหน่วยนับ</a>
-                <a class="dropdown-item" href="#">6.รายชื่อบริษัทที่สั่งซื้อพัสดุ</a>            
-                <a class="dropdown-item" href="#">7.การจัดการสิทธิของสาขา/หน่วยในการเข้าถึงคลัง</a>
-                    <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{url('/index')}}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    การจัดการคลังพัสดุ
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{url('/unit')}}">1.การจัดการรายชื่อสาขา/หน่วย/สถานที่ ที่ใช้พัสดุ</a>
+                    <a class="dropdown-item" href="{{url('/stock')}}">2.การจัดการรายชื่อประเภทคลัง</a>
+                    <a class="dropdown-item" href="#">3.การจัดการรายชื่อประเภทหมวดในแต่ละคลัง</a>
+                    <a class="dropdown-item" href="{{url('/item_stock')}}">4.การจัดการรายชื่อพัสดุ</a>
+                    <a class="dropdown-item" href="{{url('/unit_count')}}">5.การจัดการรายชื่อหน่วยนับ</a>
+                    <a class="dropdown-item" href="#">6.การจัดการรายชื่อบริษัทที่สั่งซื้อพัสดุ</a>            
+                    <a class="dropdown-item" href="{{url('/manage_access')}}">7.การจัดการสิทธิของสาขาหรือหน่วย ในการเข้าถึงคลัง</a>
+                    <a class="dropdown-item" href="{{url('/manage_access')}}">8.นำเข้าพัสดุใส่คลัง</a>
+                        <!-- <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                </li>
+
+              
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{url('/index')}}">บันทึกการใช้พัสดุ <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

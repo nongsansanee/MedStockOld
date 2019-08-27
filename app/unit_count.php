@@ -4,15 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class stock extends Model
+class unit_count extends Model
 {
     protected $fillable = [ 
         'id',
-        'stockname',
-        'stockengname'
-        // 'status'
-
-     
+        'countname'
+     //   'status'
+      
     ];
 
     public function getStatusName(){
