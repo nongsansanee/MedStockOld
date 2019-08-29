@@ -3,8 +3,9 @@
 @section('content')
 <!-- {{$units}} -->
 <!-- {{$stocks}} -->
-
+<h2>7.การจัดการสิทธิของสาขาหรือหน่วย ในการเข้าถึงคลัง</h2>
 <form action="" method="post">
+
   <label for="selstock">1.กรุณาเลือกชื่อคลังที่ต้องการจัดการสิทธิ:</label>
   <select multiple class="form-control" id="selstock" name="selstock">
      @foreach($stocks as $stock)
@@ -18,15 +19,15 @@
   <br>
     <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio1" value="1" required>
-            <label class="form-check-label" for="inlineRadio1">ทั้งสำนักงานภาควิชาอายุรศาสตร์</label>
+            <label class="form-check-label" for="inlineRadio1">ทั้งภาควิชาอายุรศาสตร์</label>
     </div>
     <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio2" value="2" >
-            <label class="form-check-label" for="inlineRadio1">เฉพาะสาขาวิชา</label>
+            <label class="form-check-label" for="inlineRadio1">เฉพาะสำนักงาน</label>
     </div>
     <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio3" value="3">
-            <label class="form-check-label" for="inlineRadio2">เฉพาะหน่วยงาน</label>
+            <label class="form-check-label" for="inlineRadio2">เฉพาะสาขาวิชา</label>
     </div>
     <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio4" value="4"  @click="showUnitAll(accesstype.value)">

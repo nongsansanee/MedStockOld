@@ -12,6 +12,7 @@
         </div>
     @endif  
     <div class="container"  >
+    <h2>1.การจัดการรายชื่อสาขา/หน่วย/สถานที่ ที่ใช้พัสดุ</h2>
      <form action="{{url('/store_unit')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
         <br>
@@ -37,17 +38,7 @@
                 {{ !empty(Session::get('status')['unitname']) ? Session::get('status')['unitname'] : ''}}
             </div>
         </div>
-        <div class="form-group">
-            <label class="font-weight-bold" for="secret">ชื่อย่อ สาขา/หน่วยงาน ภาษาไทย (ถ้ามี):</label>
-            <input 
-                type="text" 
-                class="form-control {{ !empty(Session::get('status')['shortname']) ? 'is-invalid' : ''}}" 
-                name="shortname" 
-                placeholder="ใส่ชื่อย่อสาขาหรือชื่อหน่วยงาน ภาษาไทย(ถ้ามี)" />
-            <div class="invalid-feedback">
-                {{ !empty(Session::get('status')['shortname']) ? Session::get('status')['shortname'] : ''}}
-            </div>
-        </div>
+      
         <div class="form-group">
             <label class="font-weight-bold" for="secret">ชื่อสาขา/หน่วยงาน ภาษาอังกฤษ(ถ้ามี) :</label>
             <input 
@@ -59,6 +50,7 @@
                 {{ !empty(Session::get('status')['unitengname']) ? Session::get('status')['unitengname'] : ''}}
             </div>
         </div>
+        <label class="font-weight-bold" for="secret">สังกัด :</label>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="unittype" id="inlineRadio1" value="1" required>
             <label class="form-check-label" for="inlineRadio1">สำนักงาน</label>
@@ -67,10 +59,10 @@
             <input class="form-check-input" type="radio" name="unittype" id="inlineRadio1" value="2" >
             <label class="form-check-label" for="inlineRadio1">สาขาวิชา</label>
         </div>
-        <div class="form-check form-check-inline">
+        <!-- <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="unittype" id="inlineRadio2" value="3">
             <label class="form-check-label" for="inlineRadio2">หน่วยงาน</label>
-        </div>
+        </div> -->
      
         <div class="form-group">
           <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -85,9 +77,9 @@
                     <th>#</th>
                     <th>รหัสสาขา/หน่วยงาน</th>
                     <th>ชื่อหน่วยงาน</th>
-                    <th>ชื่อย่อ(ภาษาไทย)</th>
+                    <!-- <th>ชื่อย่อ(ภาษาไทย)</th> -->
                     <th>ชื่อหน่วยงาน(ภาษาอังกฤษ)</th>
-                    <th>ประเภท</th>
+                    <th>สังกัด</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -96,7 +88,7 @@
                     <td>{{$unit->id}}</td>
                     <td>{{$unit->unitid}}</td>
                     <td>{{$unit->unitname}}</td>
-                    <td>{{$unit->shortname}}</td>
+                    <!-- <td>{{$unit->shortname}}</td> -->
                     <td>{{$unit->unitendname}}</td>
                     <td>{{$unit->getTypeName()}}</td>
                 

@@ -13,7 +13,7 @@
     @endif  
 <form action="{{url('/store_stock')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
-       
+       <h2>2.การจัดการรายชื่อประเภทคลัง</h2>
         <br>
         <div class="form-group">
             <label class="font-weight-bold" for="secret">ชื่อคลังพัสดุ ภาษาไทย :</label>
