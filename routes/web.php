@@ -32,7 +32,7 @@ Route::get('/stock','StockController@index');
 Route::post('/store_stock','StockController@store');
 
 
-Route::get('/manage_access','ManageAccessController@index');
+Route::get('/manage_access_admin','ManageAccessController@index');
 
 Route::get('/item_stock','ItemStockController@index');
 

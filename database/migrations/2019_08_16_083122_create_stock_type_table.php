@@ -15,6 +15,9 @@ class CreateStockTypeTable extends Migration
     {
         Schema::create('stock_type', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('stock_type_name');
+            $table->integer('stock_id');
+            $table->foreign('stock_id')->references('id')->on('stocks');
             $table->timestamps();
         });
     }
