@@ -13,14 +13,22 @@ class ManageAccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_type)
     {
+       // return $user_type;
+        
         $stocks = Stock::all();
         $units = Unit::all();
 
        // return $stocks."#####".$units;
+
+        if($user_type==1){
+            return view('manageAccess')->with([ 'stocks' => $stocks, 'units' => $units ,'user_type'=>$user_type ]);  
+        }else{
+            return view('manageAccessUser')->with([ 'stocks' => $stocks, 'units' => $units ,'user_type'=>$user_type ]);  
+        }
       
-        return view('manageAccess')->with([ 'stocks' => $stocks, 'units' => $units ]);  
+       
     }
 
     /**

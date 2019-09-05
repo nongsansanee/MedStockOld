@@ -3,8 +3,7 @@
 @section('content')
 <!-- {{$units}} -->
 <!-- {{$stocks}} -->
-
-<h2>3.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกข้อมูลพัสดุเข้าคลัง(ADMIN คลัง)</h2>
+<h2>4.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกการเบิกใช้พัสดุ</h2>
 <form action="" method="post">
 
   <label for="selstock">1.กรุณาเลือกชื่อคลังที่ต้องการจัดการสิทธิ:</label>
@@ -18,8 +17,7 @@
    <br>
   <label for="selstock">2.กรุณาเลือกสาขาหรือหน่วยงาน ที่ต้องการให้บันทึกข้อมูลพัสดุเข้าคลังนี้:</label>
   <br>
-
-    <!-- <div class="form-check form-check-inline">
+    <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio1" value="1" required>
             <label class="form-check-label" for="inlineRadio1">ทั้งภาควิชาอายุรศาสตร์</label>
     </div>
@@ -34,9 +32,9 @@
     <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="accesstype" id="Radio4" value="4"  @click="showUnitAll(accesstype.value)">
             <label class="form-check-label" for="inlineRadio2">ระบุเอง</label>
-    </div> -->
+    </div>
 
-    <!-- <br><br> -->
+    <br><br>
     <div class="container" id="tableunit"  style="background-color:#f5e6e1;">
         <table  class="table table-striped">
             <thead>
@@ -70,7 +68,7 @@
   </form>
   <script>
             $(document).ready(function(){
-               // $("#tableunit").hide();
+                $("#tableunit").hide();
               
                 $("#Radio1").click(function(){
                     $("#tableunit").hide();
