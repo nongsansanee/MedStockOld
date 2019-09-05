@@ -18,6 +18,7 @@ class CreateStockUsersTable extends Migration
             $table->integer('stock_id')->references('stock_id')->on('stock_type');
             $table->integer('access_type');
             $table->json('unit_id');
+            // $table->string('unit_id');
             $table->timestamps();
         });
     }

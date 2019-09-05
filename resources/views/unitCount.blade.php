@@ -11,6 +11,7 @@
             {{ $message }}
         </div>
     @endif  
+    <h2> 3.การจัดการรายชื่อหน่วยนับ </h2>
 <form action="{{url('/store_unit_count')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
     

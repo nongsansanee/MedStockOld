@@ -42,6 +42,10 @@ Route::get('/unit_count','UnitCountController@index');
 
 Route::post('/store_unit_count','UnitCountController@store');
 
-// Route::get('/unit_count', function () {
-//     return view('unitCount');
-// });
+Route::get('/manage_item_type', function () {
+    return view('manageItemType');
+});
+
+Route::get('/add_item', function () {
+    return view('addItem');
+});

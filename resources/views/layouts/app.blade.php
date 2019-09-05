@@ -49,11 +49,11 @@
                     บริหารจัดการคลังพัสดุ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">1.การจัดการรายชื่อประเภทหมวดในแต่ละคลัง</a>
+                    <a class="dropdown-item" href="{{url('/manage_item_type')}}">1.การจัดการรายชื่อประเภทหมวดในแต่ละคลัง</a>
                     <a class="dropdown-item" href="{{url('/item_stock')}}">2.การจัดการรายชื่อพัสดุ</a>
                     <a class="dropdown-item" href="{{url('/unit_count')}}">3.การจัดการรายชื่อหน่วยนับ</a>
                     <a class="dropdown-item" href="#">4.การจัดการรายชื่อบริษัทที่สั่งซื้อพัสดุ</a>  
-                    <a class="dropdown-item" href="#">5.การนำเข้าพัสดุเข้าคลัง</a>  
+                    <a class="dropdown-item" href="{{url('/add_item')}}">5.การนำเข้าพัสดุเข้าคลัง</a>  
                  
                         <!-- <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a> -->
