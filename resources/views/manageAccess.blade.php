@@ -1,14 +1,24 @@
 @extends('layouts.app')
 @section('title','MedStock')
 @section('content')
+@if($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{ $message }}
+        </div>
+    @endif  
+    @if($message = Session::get('error'))
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @endif  
 <!-- {{$units}} -->
 <!-- {{$stocks}} -->
 
 <h2>3.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกข้อมูลพัสดุเข้าคลัง(ADMIN คลัง)</h2>
-<form action="" method="post">
-
+<form action="{{url('/store_stock_admin/1')}}" method="post">
+ <input type="hidden" name="_token" value="{{ csrf_token()}}" >
   <label for="selstock">1.กรุณาเลือกชื่อคลังที่ต้องการจัดการสิทธิ:</label>
-  <select multiple class="form-control" id="selstock" name="selstock">
+  <select multiple class="form-control" id="selstock" name="selstock" required>
      @foreach($stocks as $stock)
         <option value="{{$stock->id}}">-{{$stock->stockname}}</option>
         
@@ -49,14 +59,15 @@
             </tr>
             </thead>
             <tbody id="myTable">
-        
+                <?php $i=1;?>
                 @foreach($units as $unit)
+                <?php $i++;?>
                 <tr>
                     <td>{{$unit->id}}</td>
                     <td>{{$unit->unitid}}</td>
                     <td>{{$unit->unitname}}</td>                  
                     <td>{{$unit->getTypeName()}}</td>
-                    <td><center><input type="checkbox" class="form-check-input" value="1"></center></td>
+                    <td><center><input type="checkbox" class="form-check-input" name="unit_id[]" value="{{$unit->unitid}}"></center></td>
                 </tr>
                   @endforeach
             </tbody>
@@ -68,28 +79,6 @@
     <button type="submit" class="btn btn-primary">บันทึก</button>
 
   </form>
-  <script>
-            $(document).ready(function(){
-               // $("#tableunit").hide();
-              
-                $("#Radio1").click(function(){
-                    $("#tableunit").hide();
-                });
-
-                $("#Radio2").click(function(){
-                    $("#tableunit").hide();
-                });
-
-                $("#Radio3").click(function(){
-                    $("#tableunit").hide();
-                });
-
-                $("#Radio4").click(function(){
-                    //alert("aaaaaaaa");
-                    $("#tableunit").show();
-                });
-
-            });
-</script>
+  
 @endsection
 

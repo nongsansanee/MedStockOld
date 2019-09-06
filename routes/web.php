@@ -42,6 +42,8 @@ Route::get('/unit_count','UnitCountController@index');
 
 Route::post('/store_unit_count','UnitCountController@store');
 
+Route::post('/store_stock_admin/{user_type}','ManageAccessController@store');
+
 Route::get('/manage_item_type', function () {
     return view('manageItemType');
 });
@@ -49,3 +51,7 @@ Route::get('/manage_item_type', function () {
 Route::get('/add_item', function () {
     return view('addItem');
 });
+
+// Route::post('/store_stock_admin', function (Illuminate\Http\Request $request) {
+//     return $request->all();
+// });

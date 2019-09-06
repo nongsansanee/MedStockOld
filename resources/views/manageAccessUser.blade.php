@@ -4,8 +4,8 @@
 <!-- {{$units}} -->
 <!-- {{$stocks}} -->
 <h2>4.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกการเบิกใช้พัสดุ</h2>
-<form action="" method="post">
-
+<form action="{{url('/store_stock_admin/2')}}" method="post">
+<input type="hidden" name="_token" value="{{ csrf_token()}}" >
   <label for="selstock">1.กรุณาเลือกชื่อคลังที่ต้องการจัดการสิทธิ:</label>
   <select multiple class="form-control" id="selstock" name="selstock">
      @foreach($stocks as $stock)

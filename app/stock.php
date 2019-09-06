@@ -28,4 +28,8 @@ class stock extends Model
                 break;
         }
     }
+
+    // public function stock(){
+    //     return $this->hasMany(Stock_category::class);
+    // }
 }

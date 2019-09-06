@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStockTypeTable extends Migration
+class CreateStockCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateStockTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_type', function (Blueprint $table) {
+        Schema::create('stock_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('stock_type_name');
-            $table->integer('stock_id');
-          //  $table->foreign('stock_id')->references('id')->on('stock');
+            $table->string('name');
+            $table->integer('stock_id')->references('stock')->on('stock_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateStockTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_type');
+        Schema::dropIfExists('stock_categories');
     }
 }

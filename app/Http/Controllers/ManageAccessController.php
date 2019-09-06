@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Stock;
 use App\Unit;
+use App\stock_admin;
 
 class ManageAccessController extends Controller
 {
@@ -47,9 +48,22 @@ class ManageAccessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$user_type)
     {
-        //
+       // return $request->all();
+      // return $user_type;
+
+        if($user_type ==1){  //insert stock_admin
+            
+            $stock_admin = new stock_admin;
+            $stock_admin->stock_id = $request->selstock;
+            $stock_admin->unit_id = $request->unit_id;
+            $stock_admin->save();
+           // return $stock;
+            return redirect()->back()->with('success','บันทึกสำเร็จ');
+        }else{  //insert stock_user
+            return $request->all();
+        }
     }
 
     /**
