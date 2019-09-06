@@ -29,6 +29,10 @@ class stock extends Model
         }
     }
 
+    public function getStock(){
+        
+    }
+
     // public function stock(){
     //     return $this->hasMany(Stock_category::class);
     // }

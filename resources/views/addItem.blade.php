@@ -3,7 +3,7 @@
 @section('content')
 
  <h2> 5.การนำเข้าพัสดุเข้าคลัง </h2>
-    <div class="form-inline">
+    <div class="form-group">
         <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:  </label>
                     <select  class="form-control" id="selstock" name="selstock">   
                              <option value="0">-กรุณาเลือก-</option>     
@@ -22,7 +22,7 @@
         </select>
     </div>  
 
-    <div class="form-inline">     
+    <div class="form-group">     
         <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อพัสดุ:</label>
         <select  class="form-control" id="selstock" name="selstock">
                 <option value="1">ปากกาน้ำเงิน</option>      

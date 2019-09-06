@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Stock;
-use App\Unit;
+use App\Stock_admin;
 
-
-class ManageAccessController extends Controller
+class StockAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +14,7 @@ class ManageAccessController extends Controller
      */
     public function index()
     {
-       // return $user_type;
-        
-        $stocks = Stock::all();
-        $units = Unit::all();
-
-       // return $stocks."#####".$units;
-
-        // if($user_type==1){
-        //     return view('manageAccess')->with([ 'stocks' => $stocks, 'units' => $units ,'user_type'=>$user_type ]);  
-        // }else{
-        //     return view('manageAccessUser')->with([ 'stocks' => $stocks, 'units' => $units ,'user_type'=>$user_type ]);  
-        // }
-        return view('manageAccess')->with([ 'stocks' => $stocks, 'units' => $units ]); 
-       
+        //
     }
 
     /**
@@ -50,10 +35,15 @@ class ManageAccessController extends Controller
      */
     public function store(Request $request)
     {
-       // return $request->all();
-
-
-     
+       
+            
+            $stock_admin = new stock_admin;
+            $stock_admin->stock_id = $request->selstock;
+            $stock_admin->unit_id = $request->unit_id;
+            $stock_admin->save();
+           // return $stock;
+            return redirect()->back()->with('success','บันทึกสำเร็จ');
+       
     }
 
     /**

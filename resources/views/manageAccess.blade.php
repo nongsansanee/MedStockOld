@@ -15,12 +15,12 @@
 <!-- {{$stocks}} -->
 
 <h2>3.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกข้อมูลพัสดุเข้าคลัง(ADMIN คลัง)</h2>
-<form action="{{url('/store_stock_admin/1')}}" method="post">
+<form action="{{url('/store_stock_admin')}}" method="post">
  <input type="hidden" name="_token" value="{{ csrf_token()}}" >
   <label for="selstock">1.กรุณาเลือกชื่อคลังที่ต้องการจัดการสิทธิ:</label>
   <select multiple class="form-control" id="selstock" name="selstock" required>
      @foreach($stocks as $stock)
-        <option value="{{$stock->id}}">-{{$stock->stockname}}</option>
+        <option value="{{$stock->id}}">-{{$stock->stockname }}</option>
         
      @endforeach
   </select>

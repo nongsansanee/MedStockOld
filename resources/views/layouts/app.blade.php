@@ -35,8 +35,8 @@
                     <a class="dropdown-item" href="{{url('/item_stock')}}">4.การจัดการรายชื่อพัสดุ</a>
                     <a class="dropdown-item" href="{{url('/unit_count')}}">5.การจัดการรายชื่อหน่วยนับ</a>
                     <a class="dropdown-item" href="#">6.การจัดการรายชื่อบริษัทที่สั่งซื้อพัสดุ</a>   -->
-                    <a class="dropdown-item" href="{{url('/manage_access/1')}}">3.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกข้อมูลพัสดุเข้าคลัง</a>          
-                    <a class="dropdown-item" href="{{url('/manage_access/2')}}">4.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกการเบิกใช้พัสดุ</a>
+                    <a class="dropdown-item" href="{{url('/manage_access')}}">3.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกข้อมูลพัสดุเข้าคลัง</a>          
+                    <a class="dropdown-item" href="{{url('/manage_access_user')}}">4.การจัดการสิทธิ ให้เข้าถึงคลังเพื่อบันทึกการเบิกใช้พัสดุ</a>
                    
                         <!-- <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a> -->

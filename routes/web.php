@@ -32,7 +32,9 @@ Route::get('/stock','StockController@index');
 Route::post('/store_stock','StockController@store');
 
 
-Route::get('/manage_access/{user_type}','ManageAccessController@index');
+Route::get('/manage_access','ManageAccessController@index');
+
+Route::get('/manage_access_user','ManageAccessUserController@index');
 
 
 Route::get('/item_stock','ItemStockController@index');
@@ -42,7 +44,9 @@ Route::get('/unit_count','UnitCountController@index');
 
 Route::post('/store_unit_count','UnitCountController@store');
 
-Route::post('/store_stock_admin/{user_type}','ManageAccessController@store');
+// Route::post('/store_stock_admin','ManageAccessController@store');
+
+Route::post('/store_stock_admin','StockAdminController@store');
 
 Route::get('/manage_item_type', function () {
     return view('manageItemType');
