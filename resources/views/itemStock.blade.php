@@ -19,6 +19,18 @@
   </select>
 
         <div class="form-group">
+            <label class="font-weight-bold" for="secret">รหัสพัสดุ :</label>
+            <input 
+                type="text" 
+                class="form-control {{ !empty(Session::get('status')['item_id']) ? 'is-invalid' : ''}}" 
+                name="item_id" 
+                placeholder="ใส่รหัสพัสดุ" required/>
+            <div class="invalid-feedback">
+                {{ !empty(Session::get('status')['item_id']) ? Session::get('status')['item_id'] : ''}}
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="font-weight-bold" for="secret">ระบุชื่อพัสดุ ภาษาไทย :</label>
             <input 
                 type="text" 

@@ -25,10 +25,10 @@
     <div class="form-group">     
         <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อพัสดุ:</label>
         <select  class="form-control" id="selstock" name="selstock">
-                <option value="1">ปากกาน้ำเงิน</option>      
-                <option value="2">ปากกาแดง</option> 
-                <option value="3">ปากกาดำ</option>
-                <option value="3">ดินสอ</option>
+                <option value="1">10020001-ปากกาน้ำเงิน</option>      
+                <option value="2">10020002-ปากกาแดง</option> 
+                <option value="3">10020003-ปากกาดำ</option>
+                <option value="3">10020004-ดินสอ</option>
             </select>
 
         <label class="font-weight-bold" for="selstock">กรุณาเลือกหน่วยนับ:</label>
