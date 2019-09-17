@@ -3,22 +3,26 @@
 @section('content')
 
  <h2> 2.การจัดการรายชื่อพัสดุ </h2>
-  <label for="selstock">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:</label>
-  <select multiple class="form-control" id="selstock" name="selstock">
-     @foreach($stocks as $stock)
-        <option value="{{$stock->id}}">-{{$stock->stockname}}</option>
-        
-     @endforeach
-  </select>
+        <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:</label>
+        <select multiple class="form-control" id="selstock" name="selstock">
+            @foreach($stocks as $stock)
+                <option value="{{$stock->id}}">-{{$stock->stockname}}</option>
+                
+            @endforeach
+        </select>
 
-  <label for="selstock">กรุณาเลือกชื่อหมวดของพัสดุ:</label>
-  <select multiple class="form-control" id="selstock" name="selstock">
-        <option value="1">-เครื่องเขียน</option>      
-        <option value="2">-กระดาษ</option> 
-        <option value="3">-ตัดเย็บ</option>
-  </select>
+        <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อหมวดของพัสดุ:</label>
+        <select multiple class="form-control" id="sel-catagory" name="selstock">
+                <option value="1">-{{$stock->StockCategories}}</option>      
+                <option value="2">-กระดาษ</option> 
+                <option value="3">-ตัดเย็บ</option>
+              
+                  
+                
+                 
+        </select>
 
-        <div class="form-group">
+        <div class="form-group" id="item_id">
             <label class="font-weight-bold" for="secret">รหัสพัสดุ :</label>
             <input 
                 type="text" 
@@ -30,7 +34,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group"  id="item_name">
             <label class="font-weight-bold" for="secret">ระบุชื่อพัสดุ ภาษาไทย :</label>
             <input 
                 type="text" 
@@ -42,7 +46,7 @@
             </div>
         </div>
       
-        <div class="form-group">
+        <div class="form-group"  id="item_id_eng">
             <label class="font-weight-bold" for="secret">ระบุชื่อพัสดุ ภาษาอังกฤษ :</label>
             <input 
                 type="text" 
@@ -54,12 +58,14 @@
             </div>
         </div>
        
-        <label class="font-weight-bold" for="selstock">กรุณาเลือกหน่วยนับ:</label>
-         <select multiple class="form-control" id="selstock" name="selstock">
-               <option value="1">-กล่อง</option>      
-               <option value="2">-แท่ง</option> 
-               <option value="3">-หลอด</option>
-         </select>
+        <div class="form-group"  id="unit_count">
+            <label class="font-weight-bold" for="selstock">กรุณาเลือกหน่วยนับ:</label>
+            <select multiple class="form-control" id="selstock" name="selstock">
+                <option value="1">-กล่อง</option>      
+                <option value="2">-แท่ง</option> 
+                <option value="3">-หลอด</option>
+            </select>
+         </div>
 
          <br>
         <div class="form-group">
@@ -93,4 +99,16 @@
          
             </tbody>
      </table>
+     <script>
+$(document).ready(function(){
+    $("#sel-catagory").hide();
+
+    $("#selstock").click(function(){
+        //alert("The paragraph was clicked.");
+         $("#sel-catagory").show();
+    });
+});
+</script>
+
+
 @endsection

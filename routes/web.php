@@ -48,9 +48,14 @@ Route::post('/store_unit_count','UnitCountController@store');
 
 Route::post('/store_stock_admin','StockAdminController@store');
 
-Route::get('/manage_item_type', function () {
-    return view('manageItemType');
-});
+
+
+Route::get('/manage_item_type','ManageStockCategoriesController@index');
+Route::post('/manage_item_type','ManageStockCategoriesController@store');
+
+// Route::get('/manage_item_type', function () {
+//     return view('manageItemType');
+// });
 
 Route::get('/add_item', function () {
     return view('addItem');

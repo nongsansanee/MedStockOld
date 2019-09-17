@@ -29,7 +29,8 @@ class stock extends Model
         }
     }
 
-    public function getStock(){
+    public function StockCategories(){
+        return $this->hasMany('App\Stock_category');
         
     }
 
