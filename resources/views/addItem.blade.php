@@ -62,6 +62,30 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="font-weight-bold" for="secret">Cat No.  :</label>
+            <input 
+                type="text" 
+                class="form-control {{ !empty(Session::get('status')['item_num']) ? 'is-invalid' : ''}}" 
+                name="item_num" 
+                placeholder="ใส่หมายเลข Cat No."  required />
+            <div class="invalid-feedback">
+                {{ !empty(Session::get('status')['item_num']) ? Session::get('status')['item_num'] : ''}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" for="secret">Lot No.  :</label>
+            <input 
+                type="text" 
+                class="form-control {{ !empty(Session::get('status')['item_num']) ? 'is-invalid' : ''}}" 
+                name="item_num" 
+                placeholder="ใส่หมายเลข Lot No."  required />
+            <div class="invalid-feedback">
+                {{ !empty(Session::get('status')['item_num']) ? Session::get('status')['item_num'] : ''}}
+            </div>
+        </div>
+
          <br>
         <div class="form-group">
           <button type="submit" class="btn btn-primary">บันทึก</button>

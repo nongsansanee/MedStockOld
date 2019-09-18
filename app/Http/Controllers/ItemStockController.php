@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stock;
+use App\Stock_category;
 
 class ItemStockController extends Controller
 {
@@ -15,11 +16,12 @@ class ItemStockController extends Controller
     public function index()
     {
         $stocks = Stock::all();
+        $stock_categories = Stock_category::all();
        
 
        // return $stocks;
       
-        return view('itemStock')->with([ 'stocks' => $stocks ]);  
+        return view('itemStock')->with([ 'stocks' => $stocks, 'stock_categories' => $stock_categories ]);  
     }
 
     /**

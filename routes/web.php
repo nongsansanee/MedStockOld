@@ -64,3 +64,8 @@ Route::get('/add_item', function () {
 // Route::post('/store_stock_admin', function (Illuminate\Http\Request $request) {
 //     return $request->all();
 // });
+
+
+Route::get('/cut_stock', function () {
+    return view('cutStock');
+});

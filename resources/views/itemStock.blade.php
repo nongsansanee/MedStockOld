@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','MedStock')
 @section('content')
-
+<!-- {{$stock_categories}} -->
  <h2> 2.การจัดการรายชื่อพัสดุ </h2>
         <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:</label>
         <select multiple class="form-control" id="selstock" name="selstock">
@@ -10,17 +10,22 @@
                 
             @endforeach
         </select>
-
+        <!-- {{$stock::find(1)->StockCategories}} -->
         <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อหมวดของพัสดุ:</label>
         <select multiple class="form-control" id="sel-catagory" name="selstock">
-                <option value="1">-{{$stock->StockCategories}}</option>      
-                <option value="2">-กระดาษ</option> 
-                <option value="3">-ตัดเย็บ</option>
-              
-                  
+               
+                @foreach($stock_categories as $stock_category)
+                     <option value="{{$stock_category->id}}">-{{$stock_category->name}}</option>
                 
-                 
+                @endforeach
         </select>
+        <?php
+            $a = $stock::find($stock->id)::count();
+           // echo "<br>".$a."<br>";
+           $b =  $stock::find($stock->id)->StockCategories;
+           //echo $b;
+        ?>
+     
 
         <div class="form-group" id="item_id">
             <label class="font-weight-bold" for="secret">รหัสพัสดุ :</label>
@@ -103,10 +108,16 @@
 $(document).ready(function(){
     $("#sel-catagory").hide();
 
-    $("#selstock").click(function(){
+    $("#selstock").on('change', function(){
         //alert("The paragraph was clicked.");
+        //alert($('#selstock').val());
+        // hideAll();
+         var stock_id = $('#selstock').val();
+         alert('stock_id selected='+ stock_id);
          $("#sel-catagory").show();
     });
+
+ 
 });
 </script>
 
