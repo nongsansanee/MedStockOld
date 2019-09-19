@@ -69,3 +69,10 @@ Route::get('/add_item', function () {
 Route::get('/cut_stock', function () {
     return view('cutStock');
 });
+
+Route::get('/get_category', function () {
+
+    $categorys = array("กระดาษ","เครื่องเขียน");
+    return $categorys;
+    return "test get_category ";
+});

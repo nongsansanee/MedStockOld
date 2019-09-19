@@ -113,7 +113,43 @@ $(document).ready(function(){
         //alert($('#selstock').val());
         // hideAll();
          var stock_id = $('#selstock').val();
+        
          alert('stock_id selected='+ stock_id);
+         $.ajax({
+            
+
+                type:'GET',
+
+                url:'/get_category',
+
+                // data:{name:name, password:password, email:email},
+
+                success:function(data){
+
+
+                            var x = document.getElementById("#sel-catagory");
+                            var option = document.createElement("option");
+                            // option.text = "Kiwi";
+                            // data.forEach(x.add(option));
+                            //x.add(option);
+
+                            var i;
+                             for (i = 0; i < data.length; i++) {
+                                // console.log(data[i] + "<br>") ;
+                                // option.text = data[i];
+
+                                // console.log(option.text) ;
+                                // x.add(option,x[0]);
+                                $('#sel-catagory').append('<option value="i">' + data[i] + '</option>');
+                            }
+                                                
+
+                //  alert(data.forEach());
+
+                }
+
+        });
+
          $("#sel-catagory").show();
     });
 

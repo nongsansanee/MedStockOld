@@ -16,8 +16,8 @@ class CreateStockAdminsTable extends Migration
         Schema::create('stock_admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('stock_id')->references('stock_id')->on('stock_type');
-            // $table->json('unit_id');
-            $table->string('unit_id');
+            //  $table->json('unit_id');
+           $table->string('unit_id');
             $table->timestamps();
         });
     }

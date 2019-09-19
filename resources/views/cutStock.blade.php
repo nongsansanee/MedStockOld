@@ -2,17 +2,17 @@
 @section('title','MedStock')
 @section('content')
 
- <h2> บันทึกการใช้พัสดุ - คลังพัสดุทางการแพทย์สาขาความดันโลหิตสูง</h2>
+ <h2> บันทึกการใช้พัสดุ </h2>
     <div class="form-group">
-        <!-- <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:  </label>
+        <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อคลังที่ต้องการเบิกจ่ายพัสดุ:  </label>
                     <select  class="form-control" id="selstock" name="selstock">   
                              <option value="0">-กรุณาเลือก-</option>     
                             <option value="1">คลังพัสดุทางการแพทย์สาขาวิชาโรคระบบการหายใจและวัณโรค</option>
                             <option value="2">พัสดุสำนักงาน</option>
                     </select>
-             -->
+            
       
-<!-- 
+
         <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อหมวดของพัสดุ:  </label>
         <select  class="form-control" id="selstock" name="selstock">
                 <option value="0">กรุณาเลือก-</option> 
@@ -21,7 +21,7 @@
                 <option value="3">ตัดเย็บ</option>
         </select>
     </div>  
-
+<!-- 
     <div class="form-group">     
         <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อพัสดุ:</label>
         <select  class="form-control" id="selstock" name="selstock">
@@ -70,9 +70,10 @@
         </div>
 
          <br>
+         -->
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">บันทึก</button>
-        </div> -->
+          <button type="submit" class="btn btn-primary">แสดงรายการพัสดุ</button>
+        </div> 
   <!-- Select a time: <input type="time" name="usr_time"> -->
 
         <!-- start table show data unit from database -->
