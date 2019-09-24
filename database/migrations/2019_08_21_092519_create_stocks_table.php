@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\stock;
+
 class CreateStocksTable extends Migration
 {
     /**
@@ -20,6 +22,17 @@ class CreateStocksTable extends Migration
             $table->integer('status')->default(1);
             $table->timestamps();
         });
+
+        $stocks = array(
+            ['stockname' => 'คลังพัสดุสำนักงาน', 'stockengname' => 'stock office'],
+            ['stockname' => 'คลังพัสดุทางการแพทย์ของสาขาวิชาการบริบาลผู้ป่วยนอก', 'stockengname' => 'Medical supplies1 '],
+            ['stockname' => 'คลังพัสดุทางการแพทย์ของสาขาวิชาความดันโลหิตสูง', 'stockengname' => 'Medical supplies2'],
+           
+        );
+
+        foreach($stocks as $stock){
+            stock::create($stock);
+        }
     }
 
     /**

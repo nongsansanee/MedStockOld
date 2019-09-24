@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\unit_count;
 class CreateUnitCountsTable extends Migration
 {
     /**
@@ -19,6 +20,20 @@ class CreateUnitCountsTable extends Migration
             $table->integer('status')->default(1);
             $table->timestamps();
         });
+
+        $units = array(
+            ['countname' => 'ชุด'],
+            ['countname' => 'ชิ้น'],
+            ['countname' => 'ขวด'],
+            ['countname' => 'แพ็ค'],
+            ['countname' => 'กล่อง'],
+            ['countname' => 'ม้วน'],
+            ['countname' => 'ถุง'],
+        );
+
+        foreach($units as $unit){
+            unit_count::create($unit);
+        }
     }
 
     /**
