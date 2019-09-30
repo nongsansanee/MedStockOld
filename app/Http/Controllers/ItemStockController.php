@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Stock;
 use App\Stock_category;
+use App\Unit_count;
 
 class ItemStockController extends Controller
 {
@@ -16,12 +17,12 @@ class ItemStockController extends Controller
     public function index()
     {
         $stocks = Stock::all();
-        $stock_categories = Stock_category::all();
-       
+       // $stock_categories = Stock_category::all();
+         $Unit_counts = Unit_count::all();
 
        // return $stocks;
       
-        return view('itemStock')->with([ 'stocks' => $stocks, 'stock_categories' => $stock_categories ]);  
+        return view('itemStock')->with([ 'stocks' => $stocks,'Unit_counts'=>$Unit_counts ]);  
     }
 
     /**

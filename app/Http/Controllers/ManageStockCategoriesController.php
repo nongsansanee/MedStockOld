@@ -58,7 +58,14 @@ class ManageStockCategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
+        $Stock_categorys = Stock_category::where('stock_id',$id)->first();
+        if(empty($Stock_categorys)){
+         
+             return "Not Found Stock_category id=".$id;
+          }
+       return $Stock_categorys;
+        return  view('itemStock')->with(['Stock_categorys'=> $Stock_categorys] );
     }
 
     /**

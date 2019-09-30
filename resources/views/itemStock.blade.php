@@ -1,30 +1,23 @@
 @extends('layouts.app')
 @section('title','MedStock')
 @section('content')
-<!-- {{$stock_categories}} -->
+
  <h2> 2.การจัดการรายชื่อพัสดุ </h2>
+   <form action="{{url('/add_item_stock')}}" method="post">
+      <input type="hidden" name="_token" value="{{ csrf_token()}}" >
         <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อคลังที่ต้องการเพิ่มพัสดุ:</label>
-        <select multiple class="form-control" id="selstock" name="selstock">
+        <select multiple class="form-control" id="selstock" name="sel-stock">
             @foreach($stocks as $stock)
                 <option value="{{$stock->id}}">-{{$stock->stockname}}</option>
                 
             @endforeach
         </select>
-        <!-- {{$stock::find(1)->StockCategories}} -->
-        <label for="selstock" class="font-weight-bold">กรุณาเลือกชื่อหมวดของพัสดุ:</label>
-        <select multiple class="form-control" id="sel-catagory" name="selstock">
-               
-                @foreach($stock_categories as $stock_category)
-                     <option value="{{$stock_category->id}}">-{{$stock_category->name}}</option>
-                
-                @endforeach
+       
+        <label for="selstock" id="label-sel-category" class="font-weight-bold">กรุณาเลือกชื่อหมวดของคลัง:</label>
+        <select multiple class="form-control" id="sel-category" name="sel-category">     
+                     <!-- <option value="1">-xxx</option>        -->
         </select>
-        <?php
-            $a = $stock::find($stock->id)::count();
-           // echo "<br>".$a."<br>";
-           $b =  $stock::find($stock->id)->StockCategories;
-           //echo $b;
-        ?>
+      
      
 
         <div class="form-group" id="item_id">
@@ -45,7 +38,7 @@
                 type="text" 
                 class="form-control {{ !empty(Session::get('status')['item_name']) ? 'is-invalid' : ''}}" 
                 name="item_name" 
-                placeholder="ใส่ชื่อพัสดุ" required/>
+                placeholder="ใส่ชื่อพัสดุ" />
             <div class="invalid-feedback">
                 {{ !empty(Session::get('status')['item_name']) ? Session::get('status')['item_name'] : ''}}
             </div>
@@ -65,10 +58,11 @@
        
         <div class="form-group"  id="unit_count">
             <label class="font-weight-bold" for="selstock">กรุณาเลือกหน่วยนับ:</label>
-            <select multiple class="form-control" id="selstock" name="selstock">
-                <option value="1">-กล่อง</option>      
-                <option value="2">-แท่ง</option> 
-                <option value="3">-หลอด</option>
+            <select multiple class="form-control" id="selstock" name="sel-count-unit">
+                @foreach($Unit_counts as $Unit_count)
+                    <option value="{{$Unit_count->id}}">-{{$Unit_count->countname}}</option>
+                    
+                @endforeach
             </select>
          </div>
 
@@ -76,6 +70,7 @@
         <div class="form-group">
           <button type="submit" class="btn btn-primary">บันทึก</button>
         </div>
+    </form>
   <!-- Select a time: <input type="time" name="usr_time"> -->
 
         <!-- start table show data unit from database -->
@@ -106,51 +101,64 @@
      </table>
      <script>
 $(document).ready(function(){
-    $("#sel-catagory").hide();
+    $("#label-sel-category").hide();
+    $("#sel-category").hide();
 
     $("#selstock").on('change', function(){
-        //alert("The paragraph was clicked.");
-        //alert($('#selstock').val());
-        // hideAll();
+      
          var stock_id = $('#selstock').val();
+         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      
         
-         alert('stock_id selected='+ stock_id);
+        //  alert('stock_id selected='+ stock_id);
+     
          $.ajax({
-            
-
-                type:'GET',
-
-                url:'/get_category',
+                type: 'post',
+                url: '/get_category',
+                data: {
+                         '_token': "{{ csrf_token() }}",
+                         'id': stock_id
+                       },
+                // dataType: 'JSON',
 
                 // data:{name:name, password:password, email:email},
 
-                success:function(data){
-
-
-                            var x = document.getElementById("#sel-catagory");
+                success: function(data){
+                         console.log(data);
+                         var keyCount  = Object.keys(data).length
+                         console.log(keyCount);
+                        //    alert(data);
+                          
+                            var x = document.getElementById("#sel-category");
                             var option = document.createElement("option");
-                            // option.text = "Kiwi";
-                            // data.forEach(x.add(option));
-                            //x.add(option);
-
+                 
+                        if (keyCount==0){
+                            $("#label-sel-category").hide();
+                            $("#sel-category").hide();
+                            $('#sel-category').empty();
+                        }else{
+                            $("#label-sel-category").show();
                             var i;
-                             for (i = 0; i < data.length; i++) {
-                                // console.log(data[i] + "<br>") ;
-                                // option.text = data[i];
-
-                                // console.log(option.text) ;
-                                // x.add(option,x[0]);
-                                $('#sel-catagory').append('<option value="i">' + data[i] + '</option>');
+                             for (i = 0; i < keyCount; i++) {
+                                seq = i+1;
+                              //  $('#sel-category').append('<option value="i">' + data[i].name + '</option>');
+                              $('#sel-category').append('<option value='+data[i].id+'>'+ seq + '.' + data[i].name + '</option>');
                             }
-                                                
+                            $("#sel-category").show();
+                        }                      
 
                 //  alert(data.forEach());
 
-                }
-
+                },
+                error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                    console.log(JSON.stringify(jqXHR));
+                    console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                 }
+             
+                // alert('error post');
         });
 
-         $("#sel-catagory").show();
+      
     });
 
  

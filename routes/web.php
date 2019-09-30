@@ -76,3 +76,23 @@ Route::get('/get_category', function () {
     return $categorys;
     return "test get_category ";
 });
+
+
+Route::post('/get_category', function (Illuminate\Http\Request $request) {
+
+   $Stock_categorys = \App\Stock_category::where('stock_id',$request->id)->get();
+   if(empty($Stock_categorys)){
+    
+        return "0";
+     }
+
+     return $Stock_categorys;
+
+});
+
+Route::post('/add_item_stock', function (Illuminate\Http\Request $request) {
+    return $request->all();
+});
+
+
+// Route::post('/get_category/{id}','ManageStockCategoriesController@show');
