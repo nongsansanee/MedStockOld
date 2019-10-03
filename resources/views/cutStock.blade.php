@@ -2,78 +2,44 @@
 @section('title','MedStock')
 @section('content')
 
+@if($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{$message}}
+        </div>
+ @endif
+
+ @if($errors->any())
+        <div class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+
+                @endforeach
+        </div>
+@endif
+
  <h2> บันทึกการใช้พัสดุ </h2>
-    <div class="form-group">
-        <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อคลังที่ต้องการเบิกจ่ายพัสดุ:  </label>
-                    <select  class="form-control" id="selstock" name="selstock">   
-                             <option value="0">-กรุณาเลือก-</option>     
-                            <option value="1">คลังพัสดุทางการแพทย์สาขาวิชาโรคระบบการหายใจและวัณโรค</option>
-                            <option value="2">พัสดุสำนักงาน</option>
-                    </select>
+  <form action="{{url('/cut_stock_item')}}" method="post">
+        <div class="form-group">
+        <input  type="hidden" name="_token" value="{{ csrf_token()}}" >
+        <label class="font-weight-bold" >สาขา/หน่วย:  user_login  </label><br>
+            <label class="font-weight-bold" >กรุณาเลือกชื่อคลังที่ต้องการเบิกจ่ายพัสดุ:  </label>
             
-      
+               @include("components.stockComponent")    
 
-        <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อหมวดของพัสดุ:  </label>
-        <select  class="form-control" id="selstock" name="selstock">
-                <option value="0">กรุณาเลือก-</option> 
-                <option value="1">เครื่องเขียน</option>      
-                <option value="2">กระดาษ</option> 
-                <option value="3">ตัดเย็บ</option>
-        </select>
-    </div>  
-<!-- 
-    <div class="form-group">     
-        <label class="font-weight-bold" for="selstock">กรุณาเลือกชื่อพัสดุ:</label>
-        <select  class="form-control" id="selstock" name="selstock">
-                <option value="1">40005055-ELSA-ACTH 96 tubes (จำนวนที่มีอยู่ 5 กล่อง)</option>
-                <option value="2">40005056-Cover slip (จำนวนที่มีอยู่ 12 แพ็ค)</option>         
-                <option value="3">40005057-Tweet 20,100 ml (จำนวนที่มีอยู่ 3 ขวด)</option>         
-              
+            <label class="font-weight-bold" >กรุณาเลือกชื่อหมวดของพัสดุ:  </label>
+            <select  class="form-control" id="selstockcategory" name="selstockcategory">
+                    <option value="0">กรุณาเลือก-</option> 
+                    <option value="1">เครื่องเขียน</option>      
+                    <option value="2">กระดาษ</option> 
+                    <option value="3">ตัดเย็บ</option>
             </select>
+        </div>  
 
-     
-    </div>
-
-         <div class="form-group">
-            <label class="font-weight-bold" for="secret">ระบุวันที่เบิกจ่าย :</label>
-            <input 
-                type="date" 
-                class="form-control {{ !empty(Session::get('status')['date_receive']) ? 'is-invalid' : ''}}" 
-                name="date_receive" required/>
-            <div class="invalid-feedback">
-                {{ !empty(Session::get('status')['date_receive']) ? Session::get('status')['date_receive'] : ''}}
-            </div>
-        </div>
-      
-        <div class="form-group">
-            <label class="font-weight-bold" for="secret">ระบุจำนวนพัสดุที่เบิกจ่าย  :</label>
-            <input 
-                type="text" 
-                class="form-control {{ !empty(Session::get('status')['item_num']) ? 'is-invalid' : ''}}" 
-                name="item_num" 
-                placeholder="ใส่จำนวน"  required />
-            <div class="invalid-feedback">
-                {{ !empty(Session::get('status')['item_num']) ? Session::get('status')['item_num'] : ''}}
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="font-weight-bold" for="secret">จำนวนคงเหลือ  :</label>
-            <input 
-                type="text" 
-                class="form-control {{ !empty(Session::get('status')['item_num']) ? 'is-invalid' : ''}}" 
-                name="item_num" 
-                placeholder="คำนวณให้อัตโนมัติ"  readonly />
-            <div class="invalid-feedback">
-                {{ !empty(Session::get('status')['item_num']) ? Session::get('status')['item_num'] : ''}}
-            </div>
-        </div>
-
-         <br>
-         -->
         <div class="form-group">
           <button type="submit" class="btn btn-primary">แสดงรายการพัสดุ</button>
         </div> 
+
+    </form>
   <!-- Select a time: <input type="time" name="usr_time"> -->
 
         <!-- start table show data unit from database -->
@@ -84,14 +50,10 @@
                     <th>#</th>      
                     <th>รหัสพัสดุ</th>                
                     <th>ชื่อพัสดุ</th>         
-                    <th>ชื่อพัสดุ(ภาษาอังกฤษ)</th>
                     <th>หน่วยนับ</th>
-                    <th>บริษัทผู้ขาย</th>
                     <th>วันที่รับเข้า</th>
                     <th>จำนวนที่มีในคลัง</th>
                     <th>วันหมดอายุ</th>
-                    <th>วันที่เบิกจ่าย</th>
-                    <th>จำนวนเบิกจ่าย</th>
                     <th>จำนวนคงเหลือ</th>
                     <th>บันทึกเบิกจ่าย</th>
 
@@ -99,39 +61,64 @@
             </tr>
             </thead>
             <tbody id="myTable">
-       
-                <tr>
-                    <td>1</td>
-                    <td>40005055</td>
-                    <td>-</td>
-                    <td>ELSA-ACTH 96 tubes </td>
-                    <td>กล่อง</td>
-                    <td>ไบโอจีนีเทค จำกัด</td>
-                    <td>09-08-2019</td>
-                    <td>5</td>
-                    <td>29-09-2019</td>
-                    <td>17-09-2019</td>
-                    <td>1</td>
-                    <td>4</td>
-                    <td><button type="submit" class="btn btn-primary">เบิกจ่าย</button></td>
-                </tr>
-                
-                <tr>
-                    <td>2</td>
-                    <td>40005056</td>
-                    <td>-</td>
-                    <td>Cover slip </td>
-                    <td>แพ็ค</td>
-                    <td>อาร์ ซี เอ็ม ซัพพลายส์</td>
-                    <td>05-09-2019</td>
-                    <td>12</td>
-                    <td>25-09-2019</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><button type="submit" class="btn btn-primary">เบิกจ่าย</button></td>
-                </tr>
+            @if (isset($stock_items))
+              @foreach($stock_items as $stock_item)
+                    <tr>
+                        <td>{{$stock_item->id}}</td>
+                        <td>{{$stock_item->item_code}}</td>
+                        <td><a href= >{{$stock_item->item_name}}</a></td>
+                        <td>{{$stock_item->unit_count->countname}} </td>
+                        <td>{{$stock_item->date_receive}} </td>
+                        <td>{{$stock_item->item_receive}} </td>
+                        <td>{{$stock_item->date_expire}} </td>                     
+                        <td>-</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" id="btn_withdraw" data-target="#ModalWithdraw">เบิกจ่าย</button></td>
+                    </tr>
+                @endforeach
+            
+            @endif
          
             </tbody>
      </table>
+
+     <!-- The Modal -->
+     <div class="modal fade" id="ModalWithdraw">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">บันทึกการใช้พัสดุ</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label class="font-weight-bold" > จำนวนที่เบิกใช้ :  </label>
+                    <input type="text">
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                </div>
+                
+            </div>
+            </div>
+  </div>
+
+  <script>
+$(document).ready(function(){
+
+    $("#btn_withdraw").on('click', function(){
+             
+              //   alert('btn_withdraw');
+               //  $("#myModal").show();
+     
+    });
+
+ 
+});
+</script>
 @endsection

@@ -95,4 +95,5 @@ Route::post('/add_item_stock', function (Illuminate\Http\Request $request) {
 });
 
 
-// Route::post('/get_category/{id}','ManageStockCategoriesController@show');
+
+Route::post('/cut_stock_item','UseItemController@index');
