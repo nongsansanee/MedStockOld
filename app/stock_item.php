@@ -25,4 +25,9 @@ class stock_item extends Model
         return $this->hasOne('App\unit_count','id','unit_counts_id');
         
     }
+
+    public function cut_stock(){
+        return $this->hasMany('App\cut_stock');
+        
+    }
 }

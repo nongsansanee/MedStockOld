@@ -97,3 +97,7 @@ Route::post('/add_item_stock', function (Illuminate\Http\Request $request) {
 
 
 Route::post('/cut_stock_item','UseItemController@index');
+
+Route::post('/test',function(){
+    return request()->all();
+});

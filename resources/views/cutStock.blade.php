@@ -22,9 +22,9 @@
         <div class="form-group">
         <input  type="hidden" name="_token" value="{{ csrf_token()}}" >
         <label class="font-weight-bold" >สาขา/หน่วย:  user_login  </label><br>
-            <label class="font-weight-bold" >กรุณาเลือกชื่อคลังที่ต้องการเบิกจ่ายพัสดุ:  </label>
-            
+            <label class="font-weight-bold" >กรุณาเลือกชื่อคลังที่ต้องการเบิกจ่ายพัสดุ:  </label>           
                @include("components.stockComponent")    
+
 
             <label class="font-weight-bold" >กรุณาเลือกชื่อหมวดของพัสดุ:  </label>
             <select  class="form-control" id="selstockcategory" name="selstockcategory">
@@ -66,14 +66,49 @@
                     <tr>
                         <td>{{$stock_item->id}}</td>
                         <td>{{$stock_item->item_code}}</td>
-                        <td><a href= >{{$stock_item->item_name}}</a></td>
+                        <td><a href= "#">{{$stock_item->item_name}}</a></td>
                         <td>{{$stock_item->unit_count->countname}} </td>
                         <td>{{$stock_item->date_receive}} </td>
                         <td>{{$stock_item->item_receive}} </td>
                         <td>{{$stock_item->date_expire}} </td>                     
                         <td>-</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" id="btn_withdraw" data-target="#ModalWithdraw">เบิกจ่าย</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" id="btn_withdraw" 
+                                     data-target="#ModalWithdraw" 
+                                     data-id="{{ $stock_item->id}}" 
+                                     data-item-id="{{ $stock_item->item_code}}" 
+                                     onclick="clickButton(this);">เบิกจ่าย
+                                     </button></td>
                     </tr>
+                    <!-- The Modal -->
+                    {{-- <div class="modal fade" id="ModalWithdraw_{{ $stock_item->id}}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">บันทึกการใช้พัสดุ {{ $stock_item->item_name }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                    <label class="font-weight-bold" > จำนวนสินค้าที่มี :  </label>
+                                    <input type="text" value="{{ $stock_item->item_receive}}">
+                                    </div>
+                                    <label class="font-weight-bold" > จำนวนที่เบิกใช้ :  </label>
+                                    <input type="text" >
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> --}}
                 @endforeach
             
             @endif
@@ -83,42 +118,58 @@
 
      <!-- The Modal -->
      <div class="modal fade" id="ModalWithdraw">
-            <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">บันทึกการใช้พัสดุ</h4>
+                    <!-- <input type="text" id="item_name" size="10" readonly> -->
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                
+                <form action="{{ url('/test')}}" method="POST">
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <label class="font-weight-bold" > จำนวนที่เบิกใช้ :  </label>
-                    <input type="text">
-                </div>
+                    <div class="modal-body">
+                        @csrf
+                            <input type="text" name="item_code" id="item_code" hidden>
+                            <input type="text" name="stocks_id" id="stocks_id" hidden>
+                            <input type="text" name="stock_categories_id" id="stock_categories_id" hidden>
+                            <label class="font-weight-bold" > จำนวนคงเหลือ :  </label>
+                        <!-- <label id="count"></label> -->
+                            <input type="text" id="count" size="5" readonly>
+
+                            <label class="font-weight-bold"  > จำนวนที่เบิกใช้ :  </label>
+                            <input type="text" size="5" name="item_use" required/>
+
+                    </div>
                 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                </div>
-                
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="save_cut_stock" data-id="{{ $stock_item->id}}" >บันทึก</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    </div>
+                </form>
             </div>
-            </div>
-  </div>
+        </div>
+    </div>
 
   <script>
-$(document).ready(function(){
-
-    $("#btn_withdraw").on('click', function(){
-             
-              //   alert('btn_withdraw');
-               //  $("#myModal").show();
+    
+    var stock_items = @json($stock_items);
+  
+    function clickButton(element) {
      
-    });
-
- 
-});
+        // console.log(stock_items)
+        let index = stock_items.findIndex(stock_item => stock_item.id == element.dataset.id )
+        if (index === -1 ) return;
+        let stock_item = stock_items[index];
+        console.log(stock_item);
+        $("input[name='item_code']").val(stock_item.item_code)
+        $("input[name='stocks_id']").val(stock_item.stocks_id)
+        $("input[name='stock_categories_id']").val(stock_item.stock_categories_id)
+        $("#count").val(stock_item.item_receive) 
+        //$("#item_name").val(stock_item.item_name) 
+        $("#ModalWithdraw").show();
+    }
 </script>
 @endsection

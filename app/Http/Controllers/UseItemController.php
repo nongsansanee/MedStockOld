@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use \App\Stock_item;
 
+use \App\Cut_stock;
 class UseItemController extends Controller
 {
     /**
