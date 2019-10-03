@@ -70,8 +70,9 @@
                         <td>{{$stock_item->unit_count->countname}} </td>
                         <td>{{$stock_item->date_receive}} </td>
                         <td>{{$stock_item->item_receive}} </td>
-                        <td>{{$stock_item->date_expire}} </td>                     
-                        <td>-</td>
+                        <td>{{$stock_item->date_expire}} </td>     
+                        <td>-</td>                
+                      {{-- <td>{{$stock_item->cut_stock->item_use}} </td> --}} 
                         <td><button type="button" class="btn btn-primary" data-toggle="modal" id="btn_withdraw" 
                                      data-target="#ModalWithdraw" 
                                      data-id="{{ $stock_item->id}}" 
@@ -145,7 +146,7 @@
                 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="save_cut_stock" data-id="{{ $stock_item->id}}" >บันทึก</button>
+                        <button type="submit" class="btn btn-primary" id="save_cut_stock"  >บันทึก</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                     </div>
                 </form>

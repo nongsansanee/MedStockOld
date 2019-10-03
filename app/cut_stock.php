@@ -8,7 +8,7 @@ class cut_stock extends Model
 {
    
 
-    protect $fillable=[
+    protected $fillable=[
         'id',
         'stock_id',
         'stock_categories_id',

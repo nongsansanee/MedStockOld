@@ -27,7 +27,7 @@ class stock_item extends Model
     }
 
     public function cut_stock(){
-        return $this->hasMany('App\cut_stock');
+        return $this->hasMany('App\cut_stock','item_code','item_code');
         
     }
 }
