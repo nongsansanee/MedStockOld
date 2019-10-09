@@ -28,10 +28,10 @@ class CreateCutStocksTable extends Migration
         });
 
         $cut_stocks = array(
-            ['stock_id' => 2, 'item_code' => '111111' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '10:15:20' ,'userin'=>'100356479'],
-            ['stock_id' => 2, 'item_code' => '111111' ,'item_use' => 2 ,'date_use' => '2019-10-03','time_use' => '10:16:20' ,'userin'=>'100356479'],
-            ['stock_id' => 2, 'item_code' => '111112' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '10:20:20' ,'userin'=>'100356479'],
-            ['stock_id' => 2, 'item_code' => '111115' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '11:15:20' ,'userin'=>'100356479'],
+            ['stock_id' => 2, 'item_code' => '30033130' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '10:15:20' ,'userin'=>'100356479'],
+            ['stock_id' => 2, 'item_code' => '30033130' ,'item_use' => 2 ,'date_use' => '2019-10-03','time_use' => '10:16:20' ,'userin'=>'100356479'],
+            ['stock_id' => 2, 'item_code' => '30021269' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '10:20:20' ,'userin'=>'100356479'],
+            ['stock_id' => 2, 'item_code' => '30021269' ,'item_use' => 1 ,'date_use' => '2019-10-03','time_use' => '11:15:20' ,'userin'=>'100356479'],
         );
 
         foreach($cut_stocks as $cut_stock){

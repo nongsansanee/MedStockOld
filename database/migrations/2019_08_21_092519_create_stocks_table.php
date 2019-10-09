@@ -27,6 +27,7 @@ class CreateStocksTable extends Migration
             ['stockname' => 'คลังพัสดุสำนักงาน', 'stockengname' => 'stock office'],
             ['stockname' => 'คลังพัสดุทางการแพทย์ของสาขาวิชาการบริบาลผู้ป่วยนอก', 'stockengname' => 'Medical supplies1 '],
             ['stockname' => 'คลังพัสดุทางการแพทย์ของสาขาวิชาความดันโลหิตสูง', 'stockengname' => 'Medical supplies2'],
+            ['stockname' => 'คลังพัสดุทางการแพทย์ของสาขาวิชาต่อมไร้ท่อ', 'stockengname' => 'Medical supplies3'],
            
         );
 

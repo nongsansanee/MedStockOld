@@ -155,10 +155,14 @@
     </div>
 
   <script>
-    
-    var stock_items = @json($stock_items);
+     console.log(stock_items)
+    if (typeof @json($stock_items) !== 'undefined' || @json($stock_items) == null) {
+           var stock_items = @json($stock_items);
+        }
+       
   
     function clickButton(element) {
+      
      
         // console.log(stock_items)
         let index = stock_items.findIndex(stock_item => stock_item.id == element.dataset.id )

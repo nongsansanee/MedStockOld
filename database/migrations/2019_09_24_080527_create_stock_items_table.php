@@ -25,26 +25,13 @@ class CreateStockItemsTable extends Migration
             $table->integer('item_receive');
             $table->date('date_receive');
             $table->date('date_expire');
+            $table->float('price');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
+        stock_item::loadData('data_stock_item');
 
-        $stock_items = array(
-            ['stocks_id' => 2, 'item_code' => '111111' ,'item_name' => 'Pipette Tip 200 ul' ,'unit_counts_id' => 4,'item_receive' => 10 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111112' ,'item_name' => 'Pipette Tip 1,000 ul' ,'unit_counts_id' => 4,'item_receive' => 5 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111113' ,'item_name' => 'Lamda FITC' ,'unit_counts_id' => 5,'item_receive' => 7 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111114' ,'item_name' => 'กล่องพลาสติกใส่ Tube 1.5 ml.' ,'unit_counts_id' => 5,'item_receive' => 12 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111115' ,'item_name' => 'aaaaaaaaaaaaaaa' ,'unit_counts_id' => 7,'item_receive' => 2 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111116' ,'item_name' => 'bbbbbbbb ' ,'unit_counts_id' => 1,'item_receive' => 8 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111117' ,'item_name' => 'ccccccccccccc' ,'unit_counts_id' => 2,'item_receive' => 10 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111118' ,'item_name' => 'eeeeeeeeeee' ,'unit_counts_id' => 1,'item_receive' => 15 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111119' ,'item_name' => 'fffffffffffffffff' ,'unit_counts_id' => 3,'item_receive' => 22 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23'],
-            ['stocks_id' => 2, 'item_code' => '111120' ,'item_name' => 'ggggggggggggggg' ,'unit_counts_id' => 4,'item_receive' => 9 ,'date_receive'=>'2019-10-03','date_expire'=>'2019-10-23']
-        );
-
-        foreach($stock_items as $stock_item){
-            stock_item::create($stock_item);
-        }
+   
     }
 
     /**

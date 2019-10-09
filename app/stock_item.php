@@ -18,6 +18,7 @@ class stock_item extends Model
         'item_receive',
         'date_receive',
         'date_expire',
+        'price',
         'status'
     ];
 
@@ -29,5 +30,13 @@ class stock_item extends Model
     public function cut_stock(){
         return $this->hasMany('App\cut_stock','item_code','item_code');
         
+    }
+
+    public static function loadData($fileName){
+        $stockItemRecords = loadCSV($fileName);
+        \Log::info($stockItemRecords[0]);
+        foreach($stockItemRecords as $stockItemRecord){
+            stock_item::create($stockItemRecord);
+        }
     }
 }
