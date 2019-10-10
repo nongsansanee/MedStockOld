@@ -39,4 +39,9 @@ class stock_item extends Model
             stock_item::create($stockItemRecord);
         }
     }
+
+    public function inventory()
+    {
+        return ($this->item_receive) - ($this->cut_stock()->sum('item_use'));
+    }
 }

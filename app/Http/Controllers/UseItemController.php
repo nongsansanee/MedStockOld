@@ -18,10 +18,13 @@ class UseItemController extends Controller
     {
         //return $request->all();
         $stock_items_count = Stock_item::where('stocks_id',$request->selstock)->count();
+        
         if($stock_items_count==0){
             return   view('cutStock')->with('success','Not Found Item');
         }else{
             $stock_items = Stock_item::where('stocks_id',$request->selstock)->get();
+            
+
             return  view('cutStock')->with(['stock_items'=> $stock_items] );
         }
      

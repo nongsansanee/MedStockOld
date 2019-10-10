@@ -52,8 +52,8 @@
                     <th>ชื่อพัสดุ</th>         
                     <th>หน่วยนับ</th>
                     <th>วันที่รับเข้า</th>
-                    <th>จำนวนที่มีในคลัง</th>
                     <th>วันหมดอายุ</th>
+                    <th>จำนวนที่มีในคลัง</th>                
                     <th>จำนวนคงเหลือ</th>
                     <th>บันทึกเบิกจ่าย</th>
 
@@ -62,6 +62,7 @@
             </thead>
             <tbody id="myTable">
             @if (isset($stock_items))
+                $
               @foreach($stock_items as $stock_item)
                     <tr>
                         <td>{{$stock_item->id}}</td>
@@ -69,14 +70,15 @@
                         <td><a href= "#">{{$stock_item->item_name}}</a></td>
                         <td>{{$stock_item->unit_count->countname}} </td>
                         <td>{{$stock_item->date_receive}} </td>
-                        <td>{{$stock_item->item_receive}} </td>
-                        <td>{{$stock_item->date_expire}} </td>     
-                        <td>-</td>                
+                        <td>{{$stock_item->date_expire}} </td>    
+                        <td>{{$stock_item->item_receive}} </td>        
+                        <td>{{$stock_item->inventory()}}</td>                
                       {{-- <td>{{$stock_item->cut_stock->item_use}} </td> --}} 
                         <td><button type="button" class="btn btn-primary" data-toggle="modal" id="btn_withdraw" 
                                      data-target="#ModalWithdraw" 
                                      data-id="{{ $stock_item->id}}" 
                                      data-item-id="{{ $stock_item->item_code}}" 
+                                     data-balance="{{$stock_item->inventory()}}"
                                      onclick="clickButton(this);">เบิกจ่าย
                                      </button></td>
                     </tr>
@@ -154,27 +156,22 @@
         </div>
     </div>
 
-  <script>
-     console.log(stock_items)
-    if (typeof @json($stock_items) !== 'undefined' || @json($stock_items) == null) {
-           var stock_items = @json($stock_items);
-        }
+<script>
+//console.log();
+var stock_items = <?PHP echo (!empty($stock_items) ? json_encode($stock_items) : '""'); ?>;
+
+function clickButton(element) {
+
+          let index = stock_items.findIndex(stock_item => stock_item.id == element.dataset.id )
+          if (index === -1 ) return;
+          let stock_item = stock_items[index];
        
-  
-    function clickButton(element) {
-      
-     
-        // console.log(stock_items)
-        let index = stock_items.findIndex(stock_item => stock_item.id == element.dataset.id )
-        if (index === -1 ) return;
-        let stock_item = stock_items[index];
-        console.log(stock_item);
-        $("input[name='item_code']").val(stock_item.item_code)
-        $("input[name='stocks_id']").val(stock_item.stocks_id)
-        $("input[name='stock_categories_id']").val(stock_item.stock_categories_id)
-        $("#count").val(stock_item.item_receive) 
-        //$("#item_name").val(stock_item.item_name) 
-        $("#ModalWithdraw").show();
-    }
+          $("input[name='item_code']").val(stock_item.item_code)
+          $("input[name='stocks_id']").val(stock_item.stocks_id)
+          $("input[name='stock_categories_id']").val(stock_item.stock_categories_id)
+          $("#count").val(element.dataset.balance) 
+          $("#ModalWithdraw").show();
+      }
+
 </script>
 @endsection

@@ -66,9 +66,7 @@ Route::get('/add_item', function () {
 // });
 
 
-Route::get('/cut_stock', function () {
-    return view('cutStock');
-});
+
 
 Route::get('/get_category', function () {
 
@@ -94,10 +92,16 @@ Route::post('/add_item_stock', function (Illuminate\Http\Request $request) {
     return $request->all();
 });
 
-
+Route::get('/cut_stock', function () {
+    return view('cutStock');
+});
 
 Route::post('/cut_stock_item','UseItemController@index');
 
-Route::post('/test',function(){
-    return request()->all();
+Route::post('/test',function(Illuminate\Http\Request $request){
+    return $request->all();
+});
+
+Route::get('/test',function(){
+    return view('test');
 });
